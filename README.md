@@ -137,6 +137,34 @@ The error function receives a response object with 3 properties: status, error a
         }
     }
     
+    
+    
+    
+### postJson
+Executre a Post request and send a JSON object. 
+
+    cordovaHTTP.post("https://google.com/", Json_Object, 
+    { Authorization: "OAuth2: token" }, function(response) {
+        // prints 200
+        console.log(response.status);
+        try {
+            response.data = JSON.parse(response.data);
+            // prints test
+            console.log(response.data.message);
+        } catch(e) {
+            console.error("JSON parsing error");
+        }
+    }, function(response) {
+        // prints 403
+        console.log(response.status);
+        
+        //prints Permission denied 
+        console.log(response.error);
+    });
+    
+
+
+
 ### get
 Execute a GET request.  Takes a URL, parameters, and headers.  See the [post](#post) documentation for details on what is returned on success and failure.
 
